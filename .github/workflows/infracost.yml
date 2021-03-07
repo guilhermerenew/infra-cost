@@ -21,5 +21,4 @@ jobs:
       with:
         entrypoint: /scripts/ci/diff.sh 
         terraform_dir: principal
-        usage_file: ./infracost-usage.yml
-        terraform_plan_flags: -var-file=myvars.tfvars
+        usage_file: infracost-usage.yml
