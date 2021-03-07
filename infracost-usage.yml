@@ -1,27 +1,6 @@
-## You can use this file to define resource usage estimates for Infracost to use when calculating
-## the cost of usage-based resource, such as AWS Lambda.
-## `infracost --usage-file /path/to/infracost-usage.yml [other flags]`
-## See https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml for available options.
 version: v0.1
 resource_usage:
 
-  # Note that we're working on adding all of the supported resources (https://www.infracost.io/docs/supported_resources) to
-  # the usage file feature. Please watch https://github.com/infracost/infracost/issues/421 for updates.
-
-  #
-  # The usage file also supports specifying usage for resources inside modules,
-  # by specifying the full path to the resource. This is the same value as Infracost
-  # outputs in the NAME column , e.g.:
-  #
-  # module.my_module.aws_dynamodb_table.my_table:
-  #   storage_gb: 1000
-  # module.lambda_function.aws_lambda_function.this[0]:
-  #   monthly_requests: 20000
-  #   request_duration_ms: 600
-
-  #
-  # Terraform AWS resources
-  #
   aws_acmpca_certificate_authority.my_private_ca:
     monthly_requests: 20000 # Monthly private certificate requests.
 
@@ -64,11 +43,11 @@ resource_usage:
     monthly_rule_evaluations: 10000 # Monthly config rule evaluations.
 
   aws_data_transfer.my_region:
-    region: us-east-1                           # Region the data transfer is originating from.
+    region: ap-northeast-1                      # Region the data transfer is originating from.
     monthly_intra_region_gb: 1000               # Monthly data transferred between availability zones in the region.
-    monthly_outbound_us_east_to_us_east_gb: 500 # Monthly data transferred between US east regions. NOTE: this is only valid if the region is a us-east region.
+    monthly_outbound_us_east_to_us_east_gb: 0   # Monthly data transferred between US east regions. NOTE: this is only valid if the region is a us-east region.
     monthly_outbound_other_region_gb: 750       # Monthly data transferred to other AWS regions.
-    monthly_outbound_internet_gb: 5000          # Monthly data transferred to the Internet.
+    monthly_outbound_internet_gb: 1000          # Monthly data transferred to the Internet.
 
   aws_docdb_cluster_instance.my_db:
     data_storage_gb: 1000         # Total storage for cluster in GB.

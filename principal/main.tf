@@ -174,7 +174,7 @@ resource "aws_elb" "mw_elb" {
 resource "aws_instance" "webserver1" {
   security_groups             = [aws_security_group.mw_sg.id]
   ami                         = "ami-07dd14faa8a17fb3e"
-  instance_type               = "t3.nano"
+  instance_type               = "t2.nano"
   key_name                    = "terraform-aws"
   subnet_id                   = aws_subnet.mw_subnet1.id
   private_ip                  = "10.0.1.10"
@@ -190,7 +190,7 @@ resource "aws_instance" "webserver1" {
 resource "aws_instance" "webserver2" {
   security_groups             = [aws_security_group.mw_sg.id]
   ami                         = "ami-07dd14faa8a17fb3e"
-  instance_type               = "t3.nano"
+  instance_type               = "t2.nano"
   key_name                    = "terraform-aws"
   subnet_id                   = aws_subnet.mw_subnet2.id
   private_ip                  = "10.0.2.20"
@@ -206,7 +206,7 @@ resource "aws_instance" "webserver2" {
 resource "aws_instance" "grafana" {
   security_groups             = [aws_security_group.mw_sg.id]
   ami                         = "ami-07dd14faa8a17fb3e"
-  instance_type               = "t2.micro"
+  instance_type               = "t2.nano"
   key_name                    = "terraform-aws"
   subnet_id                   = aws_subnet.mw_subnet3.id
   private_ip                  = "10.0.3.30"
@@ -258,12 +258,12 @@ resource "aws_security_group" "security-group-rds" {
 
 # Creating RDS Instance
 resource "aws_db_instance" "wikidatabase" {
-  allocated_storage       = 500
-  max_allocated_storage   = 1000
+  allocated_storage       = 30
+  max_allocated_storage   = 50
   storage_type            = "gp2"
   engine                  = "mysql"
   engine_version          = "5.7"
-  instance_class          = "db.t2.micro"
+  instance_class          = "db.t3.micro"
   name                    = "wikidatabase"
   username                = "wiki"
   password                = "wik987%$"
@@ -291,9 +291,9 @@ resource "aws_db_instance" "wikidatabase-replica" {
   availability_zone       = "ap-northeast-1d"
   engine                  = "mysql"
   engine_version          = "5.7"
-  instance_class          = "db.t2.micro"
+  instance_class          = "db.t3.micro"
   allocated_storage       = 30
-  max_allocated_storage   = 100
+  max_allocated_storage   = 50
   storage_type            = "gp2"
   username                = "wiki"
   password                = "wik987%$"
