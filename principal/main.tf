@@ -174,7 +174,7 @@ resource "aws_elb" "mw_elb" {
 resource "aws_instance" "webserver1" {
   security_groups             = [aws_security_group.mw_sg.id]
   ami                         = "ami-07dd14faa8a17fb3e"
-  instance_type               = "t2.micro"
+  instance_type               = "t3.nano"
   key_name                    = "terraform-aws"
   subnet_id                   = aws_subnet.mw_subnet1.id
   private_ip                  = "10.0.1.10"
@@ -190,7 +190,7 @@ resource "aws_instance" "webserver1" {
 resource "aws_instance" "webserver2" {
   security_groups             = [aws_security_group.mw_sg.id]
   ami                         = "ami-07dd14faa8a17fb3e"
-  instance_type               = "t2.micro"
+  instance_type               = "t3.nano"
   key_name                    = "terraform-aws"
   subnet_id                   = aws_subnet.mw_subnet2.id
   private_ip                  = "10.0.2.20"
@@ -258,8 +258,8 @@ resource "aws_security_group" "security-group-rds" {
 
 # Creating RDS Instance
 resource "aws_db_instance" "wikidatabase" {
-  allocated_storage       = 20
-  max_allocated_storage   = 100
+  allocated_storage       = 5
+  max_allocated_storage   = 10
   storage_type            = "gp2"
   engine                  = "mysql"
   engine_version          = "5.7"
@@ -292,8 +292,8 @@ resource "aws_db_instance" "wikidatabase-replica" {
   engine                  = "mysql"
   engine_version          = "5.7"
   instance_class          = "db.t2.micro"
-  allocated_storage       = 20
-  max_allocated_storage   = 100
+  allocated_storage       = 2
+  max_allocated_storage   = 10
   storage_type            = "gp2"
   username                = "wiki"
   password                = "wik987%$"
