@@ -20,6 +20,6 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       with:
         entrypoint: /scripts/ci/diff.sh 
-        terraform_dir: /principal/main.tf
+        terraform_dir: /principal/
         usage_file: ./infracost-usage.yml
         terraform_plan_flags: -var-file=myvars.tfvars
