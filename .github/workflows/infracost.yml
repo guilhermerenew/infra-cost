@@ -18,6 +18,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         entrypoint: /scripts/ci/diff.sh
-        tfdir: terraform
-        #terraform_dir: terraform
+        terraform_dir: terraform
         #usage_file: infracost-usage.yml
