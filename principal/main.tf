@@ -328,8 +328,8 @@ resource "aws_route53_record" "database-record" {
 }
 
 #Function Lambda test!
-resource "aws_lambda_function" "hello_world" {
-  function_name = "hello_world"
+resource "aws_lambda_function" "hello_world-gui" {
+  function_name = "hello_world-gui"
   role          = "arn:aws:lambda:us-east-1:account-id:resource-id"
   handler       = "exports.test"
   runtime       = "nodejs12.x"
