@@ -1,3 +1,4 @@
+[![.github/workflows/infracost.yml](https://github.com/guilhermerenew/infra-cost/actions/workflows/infracost.yml/badge.svg)](https://github.com/guilhermerenew/infra-cost/actions/workflows/infracost.yml)
 ## Getting started
 Infracost shows cloud cost estimates for Terraform projects. It helps developers, devops and others to quickly see the cost breakdown and compare different options upfront.
 
