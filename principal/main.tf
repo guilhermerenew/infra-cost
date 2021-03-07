@@ -258,8 +258,8 @@ resource "aws_security_group" "security-group-rds" {
 
 # Creating RDS Instance
 resource "aws_db_instance" "wikidatabase" {
-  allocated_storage       = 5
-  max_allocated_storage   = 10
+  allocated_storage       = 500
+  max_allocated_storage   = 1000
   storage_type            = "gp2"
   engine                  = "mysql"
   engine_version          = "5.7"
@@ -292,8 +292,8 @@ resource "aws_db_instance" "wikidatabase-replica" {
   engine                  = "mysql"
   engine_version          = "5.7"
   instance_class          = "db.t2.micro"
-  allocated_storage       = 2
-  max_allocated_storage   = 10
+  allocated_storage       = 30
+  max_allocated_storage   = 100
   storage_type            = "gp2"
   username                = "wiki"
   password                = "wik987%$"
