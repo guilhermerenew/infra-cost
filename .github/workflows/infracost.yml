@@ -23,4 +23,3 @@ jobs:
         terraform_dir: /principal/main.tf
         usage_file: ./infracost-usage.yml
         terraform_plan_flags: -var-file=myvars.tfvars
-#ah tabom
