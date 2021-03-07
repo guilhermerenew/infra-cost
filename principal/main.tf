@@ -313,6 +313,18 @@ resource "aws_db_instance" "wikidatabase-replica" {
   }
 }
 
+resource "aws_route53_zone" "area-zone" {
+  name = "applicationdesktop.cf"
+}
+
+resource "aws_route53_record" "database-record" {
+  zone_id = aws_route53_zone.area-zone.zone_id
+  name    = "database.${aws_route53_zone.area-zone.name}"
+  type    = "CNAME"
+  ttl     = 30
+  records = ["${aws_db_instance.wikidatabase.address}"]
+}
+
 # ElasticLoadBalancer Addres for Connections
 output "address" {
   value = aws_elb.mw_elb.dns_name
