@@ -263,7 +263,7 @@ resource "aws_db_instance" "wikidatabase" {
   storage_type            = "gp2"
   engine                  = "mysql"
   engine_version          = "5.7"
-  instance_class          = "db.t2.micro"
+  instance_class          = "db.t3.medium"
   name                    = "wikidatabase"
   username                = "wiki"
   password                = "wik987%$"
@@ -328,8 +328,8 @@ resource "aws_route53_record" "database-record" {
 }
 
 #Function Lambda test!
-resource "aws_lambda_function" "hello_world" {
-  function_name = "hello_world"
+resource "aws_lambda_function" "hello_world-gui" {
+  function_name = "hello_world-gui"
   role          = "arn:aws:lambda:us-east-1:account-id:resource-id"
   handler       = "exports.test"
   runtime       = "nodejs12.x"
