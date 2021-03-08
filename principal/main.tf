@@ -313,16 +313,27 @@ resource "aws_db_instance" "wikidatabase-replica" {
   }
 }
 
+# Create zone!
 resource "aws_route53_zone" "area-zone" {
   name = "applicationdesktop.cf"
 }
 
+# Record name!
 resource "aws_route53_record" "database-record" {
   zone_id = aws_route53_zone.area-zone.zone_id
   name    = "database.${aws_route53_zone.area-zone.name}"
   type    = "CNAME"
   ttl     = 30
   records = ["${aws_db_instance.wikidatabase.address}"]
+}
+
+#Function Lambda test!
+resource "aws_lambda_function" "hello_world" {
+  function_name = "hello_world"
+  role          = "arn:aws:lambda:us-east-1:account-id:resource-id"
+  handler       = "exports.test"
+  runtime       = "nodejs12.x"
+  memory_size   = 1024
 }
 
 # ElasticLoadBalancer Addres for Connections
