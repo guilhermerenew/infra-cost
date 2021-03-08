@@ -174,7 +174,7 @@ resource "aws_elb" "mw_elb" {
 resource "aws_instance" "webserver1" {
   security_groups             = [aws_security_group.mw_sg.id]
   ami                         = "ami-07dd14faa8a17fb3e"
-  instance_type               = "t3.nano"
+  instance_type               = "t2.nano"
   key_name                    = "terraform-aws"
   subnet_id                   = aws_subnet.mw_subnet1.id
   private_ip                  = "10.0.1.10"
@@ -190,7 +190,7 @@ resource "aws_instance" "webserver1" {
 resource "aws_instance" "webserver2" {
   security_groups             = [aws_security_group.mw_sg.id]
   ami                         = "ami-07dd14faa8a17fb3e"
-  instance_type               = "t3.nano"
+  instance_type               = "t2.nano"
   key_name                    = "terraform-aws"
   subnet_id                   = aws_subnet.mw_subnet2.id
   private_ip                  = "10.0.2.20"
@@ -206,7 +206,7 @@ resource "aws_instance" "webserver2" {
 resource "aws_instance" "grafana" {
   security_groups             = [aws_security_group.mw_sg.id]
   ami                         = "ami-07dd14faa8a17fb3e"
-  instance_type               = "t2.micro"
+  instance_type               = "t2.nano"
   key_name                    = "terraform-aws"
   subnet_id                   = aws_subnet.mw_subnet3.id
   private_ip                  = "10.0.3.30"
@@ -288,12 +288,12 @@ resource "aws_db_instance" "wikidatabase" {
 resource "aws_db_instance" "wikidatabase-replica" {
   identifier              = "wikidatabase-replica"
   replicate_source_db     = aws_db_instance.wikidatabase.id
+  allocated_storage       = 5
+  max_allocated_storage   = 10
   availability_zone       = "ap-northeast-1d"
   engine                  = "mysql"
   engine_version          = "5.7"
-  instance_class          = "db.t2.micro"
-  allocated_storage       = 2
-  max_allocated_storage   = 10
+  instance_class          = "db.t2.micro"	
   storage_type            = "gp2"
   username                = "wiki"
   password                = "wik987%$"
